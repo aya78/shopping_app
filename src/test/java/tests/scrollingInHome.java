@@ -11,14 +11,11 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 
 public class scrollingInHome {
-    /*
-    *
-        //scroll up a page
-        a.sendKeys(Keys.PAGE_DOWN).build().perform();*/
-    String random_number = RandomStringUtils.random(5, false, true);
-    String random_barcode = RandomStringUtils.random(8, false, true);
-    public String random_string = RandomStringUtils.random(6, true, false);
 
+//    String random_number = RandomStringUtils.random(5, false, true);
+//    String random_barcode = RandomStringUtils.random(8, false, true);
+//    public String random_string = RandomStringUtils.random(6, true, false);
+      public String url ="http://tutorialsninja.com/demo/index.php?route=common/home";
     public WebDriver driver;
     @BeforeTest(description = "SetUp chrome driver")
     public void SetUp()
@@ -29,7 +26,7 @@ public class scrollingInHome {
     @Test(priority = 0)
     public void Valid_login() throws InterruptedException {
         driver.manage().window().maximize();
-        driver.get("http://tutorialsninja.com/demo/index.php?route=common/home");
+        driver.navigate().to(url);
         HomePage.click_on_myAccount(driver).click();
         HomePage.navigate_to_login(driver).click();
         HomePage.enter_email(driver).sendKeys("aya7777@gmail.com");
@@ -40,14 +37,26 @@ public class scrollingInHome {
     @Test(priority = 1)
     public void open_productsToChart() throws InterruptedException {
 
-        driver.findElement(By.xpath("//*[@id=\"account-account\"]/ul/li[1]/a")).click();
+//      driver.findElement(By.xpath("//*[@id=\"account-account\"]/ul/li[1]/a")).click();
+        driver.navigate().to(url);
         Actions a = new Actions(driver);
         a.sendKeys(Keys.PAGE_DOWN).build().perform();
-         HomePage.add_favorite1(driver).click();
-         HomePage.add_favorite2(driver).click();
-         HomePage.click_compare(driver).click();
-         HomePage.open_product(driver).click();
-
+        HomePage.add_favorite1(driver).click();
+        HomePage.add_favorite2(driver).click();
+        HomePage.click_compare(driver).click();
+        HomePage.open_product(driver).click();
         Thread.sleep(2000);
+        HomePage.click_specification(driver).click();
+        HomePage.open_product_img(driver).click();
+        HomePage.scroll_product_img(driver).click();
+        Thread.sleep(1000);
+        HomePage.scroll_product_img(driver).click();
+        HomePage.close_product_img(driver).click();
+        HomePage.enter_quantity(driver).sendKeys(Keys.BACK_SPACE);
+        HomePage.enter_quantity(driver).sendKeys("2");
+        HomePage.ADD_to_cart(driver).click();
+        HomePage.open_my_cart(driver).click();
+
+
     }
 }
