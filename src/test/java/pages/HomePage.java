@@ -1,5 +1,6 @@
 package pages;
 
+import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,10 +9,12 @@ public class HomePage {
     private static WebElement element=null;
 
     // public int randomInt ;
-    static WebDriver driver = null;
-    public HomePage(WebDriver driver) {
+    SHAFT driver;
+    public HomePage(SHAFT driver) {
         this.driver = driver;
     }
+
+
     public static WebElement click_on_myAccount(WebDriver driver){
         element = driver.findElement(By.xpath("//*[@id=\"top-links\"]/ul/li[2]/a"));
         return element;
